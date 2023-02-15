@@ -17,7 +17,9 @@ public class Player : MonoBehaviour
     [SerializeField] private List<Sprite> rightSp;
 
     [SerializeField] private Transform parent;
-    [SerializeField] private GameObject bullet;
+    [SerializeField] private PlayerBullet pbullet;
+
+    [SerializeField] private float power= 0f;
 
     private SpriteAnimation sa;
 
@@ -30,7 +32,7 @@ public class Player : MonoBehaviour
         sa.SetSprite(centerSp, 0.2f);
 
         InvokeRepeating("CreateBullet", 1f, 0.2f);
-        
+
     }
 
     // Update is called once per frame
@@ -49,25 +51,26 @@ public class Player : MonoBehaviour
         if (x < 0 && dir != Direction.Left)
         {
             dir = Direction.Left;
-            sa.SetSprite(leftSp[0],leftSp, 0.2f);
+            sa.SetSprite(leftSp[0], leftSp, 0.2f);
         }
-        else if(x > 0 && dir != Direction.Right)
+        else if (x > 0 && dir != Direction.Right)
         {
             dir = Direction.Right;
-            sa.SetSprite(rightSp[0],rightSp, 0.2f);
+            sa.SetSprite(rightSp[0], rightSp, 0.2f);
         }
 
         else if (x == 0 && dir != Direction.Center)
         {
             dir = Direction.Center;
-            sa.SetSprite(centerSp[0],centerSp, 0.2f);
+            sa.SetSprite(centerSp[0], centerSp, 0.2f);
         }
     }
 
     public void CreateBullet()
     {
-        Instantiate(bullet, parent);
-
+        PlayerBullet pb = Instantiate(pbullet, transform);
+        pb.SetPower(power);
+        pb.transform.SetParent(parent);
     }
 
 }

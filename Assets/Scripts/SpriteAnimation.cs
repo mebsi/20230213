@@ -5,7 +5,6 @@ using System.Linq;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(SpriteRenderer))]
-
 public class SpriteAnimation : MonoBehaviour
 {
     private List<Sprite> sprites = new List<Sprite>();
