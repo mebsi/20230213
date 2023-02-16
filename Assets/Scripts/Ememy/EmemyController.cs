@@ -7,7 +7,9 @@ public class EmemyController : MonoBehaviour
     [SerializeField] private Transform parent;
     [SerializeField] private Ememy[] ememies;
 
-    float delaySpawn = 0f;
+    [SerializeField] private Transform eBullet;
+
+    float delaySpawn = 100f;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +24,7 @@ public class EmemyController : MonoBehaviour
         {
             int rand = Random.Range(0, ememies.Length);
             Ememy ememy = Instantiate(ememies[rand], transform);
+            ememy.parent = eBullet;
             ememy.transform.localPosition = new Vector2(Random.Range(-2.5f, 2.5f),0f);
             ememy.transform.SetParent(parent);
                 

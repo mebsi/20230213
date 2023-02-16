@@ -63,10 +63,11 @@ public class SpriteAnimation : MonoBehaviour
         spriteDelayTime = delayTime;
     }
 
-    public void SetSprite(List<Sprite> argSprites,float dealyTime, UnityAction action)
+    public void SetSprite(List<Sprite> argSprites,float delayTime, UnityAction action)
     {
         Init();
-       this.sprites = argSprites.ToList();
+        this.action = action;
+        sprites = argSprites.ToList();
         spriteDelayTime = delayTime;
     }
 

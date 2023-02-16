@@ -8,6 +8,7 @@ public class EesyEmemy : Ememy
     {
         ed.speed = 1f;
         ed.hp = 100f;
+        player = FindObjectOfType<Player>();
     }
 
     // Start is called before the first frame update
