@@ -6,6 +6,7 @@ public struct EmemyData
 {
     public float speed;
     public float hp;
+    public bool isBoss;
 }
 
 public abstract class Ememy : MonoBehaviour
@@ -14,19 +15,36 @@ public abstract class Ememy : MonoBehaviour
     public Transform fireTrans;
     public EnemyBullet eBullet;
 
+    protected Transform parent;
     public List<Sprite> explosionSprite;
     public List<Sprite> normalSprite;
     public Sprite hitSprite;
+  
 
     protected Player player;//Å¸°Ù
-    public Transform parent;
+    
+
+    public virtual void SetPercent(Transform parent)
+    {
+        this.parent = parent;
+    }
     public abstract void Init();
 
     public virtual void Move()
     {
-        if (ed.hp > 0)
-            transform.Translate(new Vector2(0f, -(Time.deltaTime * ed.speed)));
+        if (ed.isBoss)
+        {
+            if (transform.localPosition.y >= 3)
+            {
+                transform.Translate(new Vector2(0f, -(Time.deltaTime * ed.speed)));
+            }
+        }
+        else
+        {
 
+            if (ed.hp > 0)
+                transform.Translate(new Vector2(0f, -(Time.deltaTime * ed.speed)));
+        }
     }
 
     float testTime = 0;
@@ -67,10 +85,14 @@ public abstract class Ememy : MonoBehaviour
             {
                 GetComponent<SpriteAnimation>().SetSprite(hitSprite, normalSprite, 0.1f);
             }
+            Destroy(collision.gameObject);
         }
     }
     public void Die()
     {
+        ItemController.Instance.Spawn(transform);
         Destroy(gameObject);
     }
+
+
 }

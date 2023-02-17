@@ -76,6 +76,10 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.GetComponent<Coin>())
+        {
+            UIController.Instance.Score += 10;
+        }
         Destroy(collision.gameObject);
     }
 

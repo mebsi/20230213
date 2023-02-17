@@ -24,7 +24,7 @@ public class EmemyController : MonoBehaviour
         {
             int rand = Random.Range(0, ememies.Length);
             Ememy ememy = Instantiate(ememies[rand], transform);
-            ememy.parent = eBullet;
+            ememy.SetPercent(eBullet);
             ememy.transform.localPosition = new Vector2(Random.Range(-2.5f, 2.5f),0f);
             ememy.transform.SetParent(parent);
                 
