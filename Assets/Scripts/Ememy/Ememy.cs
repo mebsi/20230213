@@ -90,6 +90,12 @@ public abstract class Ememy : MonoBehaviour
     }
     public void Die()
     {
+        if(ed.isBoss)
+        {
+            EmemyController.Instance.StageUp();
+          
+        }
+
         ItemController.Instance.Spawn(transform);
         Destroy(gameObject);
     }
