@@ -37,5 +37,4 @@ public class UIController : MonoBehaviour
     {
         Instantiate(pb);
     }
-
 }

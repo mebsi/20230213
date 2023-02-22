@@ -80,7 +80,15 @@ public class Player : MonoBehaviour
         {
             UIController.Instance.Score += 10;
         }
+       
         Destroy(collision.gameObject);
     }
+
+    //IEnumerator DieAnimarion()
+    //{
+        
+    //}
+
+  
 
 }
